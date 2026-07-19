@@ -137,6 +137,7 @@ scanners. Token figures are estimates unless measured provider telemetry exists.
 - [Recording runbook](buildweek-demo-project/DEMO-RUNBOOK.md)
 - [Copy-paste demo prompts](buildweek-demo-project/DEMO-PROMPTS.md)
 - [Video script](PITCH-SCRIPT.md)
+- [Video production guide and OpenMontage prompt](VIDEO-PRODUCTION-GUIDE.md)
 - [One-page overview](PITCH-ONE-PAGER.md)
 
 ## License
