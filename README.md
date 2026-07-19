@@ -1,17 +1,16 @@
 <p align="center">
-  <img src="assets/brand/tailtrail-mark.png" width="150" alt="TailTrail logo: a code trail moving forward" />
+  <img src="assets/brand/tailtrail-mark.png" width="150" alt="TailTrail logo" />
 </p>
 
 <h1 align="center">TailTrail</h1>
 
 <p align="center">
-  <strong>Keep AI-assisted code changes focused, reviewable, and provable.</strong>
-  <br />
-  OpenAI Build Week 2026 · Developer Tools submission
+  <strong>Keep AI-assisted code changes focused, reviewable, and provable.</strong><br />
+  OpenAI Build Week 2026 Developer Tools submission
 </p>
 
 <p align="center">
-  <code>Navigator-first</code> · <code>Local-first</code> · <code>Approval-first</code> · <code>No dependencies for the demo</code>
+  <code>Navigator-first</code> | <code>Local-first</code> | <code>Approval-first</code> | <code>No demo dependencies</code>
 </p>
 
 ---
@@ -19,106 +18,66 @@
 ## The problem
 
 Small coding tasks should stay small. But AI-assisted changes can drift into
-unnecessary rewrites, lose the actual requirement, and make it hard to show why
-a change is safe.
+unnecessary rewrites, lose the actual requirement, and leave weak validation
+evidence.
 
-**TailTrail adds a lightweight workflow around Codex:** first make a plan, then
-map the relevant code, get approval, make the smallest fix, run focused
-validation, and leave clear evidence behind.
+TailTrail adds a lightweight workflow around Codex: make a plan, map the right
+code, get approval, make the smallest fix, run focused validation, and keep
+clear evidence.
 
 ```mermaid
 flowchart LR
     A[Failing test] --> B[Navigator plan]
     B --> C[Code Graph]
     C --> D[Human approval]
-    D --> E[Codex makes the focused fix]
+    D --> E[Focused Codex fix]
     E --> F[Focused tests]
-    F --> G[Review + saved evidence]
+    F --> G[Review and evidence]
 ```
 
 ## End-to-end workflow
 
-The demo uses the core path. The surrounding capabilities are available when a
-task needs them; TailTrail does not silently run tools, modify code, or share
-data.
+The Build Week demo uses the central path. The other feature families are
+available when a task needs them. TailTrail does not silently run tools, edit
+code, install dependencies, or share data.
 
 ```mermaid
 flowchart TB
-    task[Developer request] --> intake
+    A[Developer request] --> B[Navigator plan]
+    C[Bootstrap Snapshot] --> B
+    D[Intent expansion and token routing] --> B
 
-    subgraph intake[1 · Understand and scope]
-        direction LR
-        intent[Intent expansion] --> nav[Navigator-first plan]
-        snapshot[Bootstrap Snapshot] --> nav
-        token[Token routing and context slicing] --> nav
-    end
+    B --> E[Code Graph and local semantic analysis]
+    E --> F[Project policy and guardrails]
+    E --> G[Optional provider analysis]
+    G --> F
 
-    nav --> graph
+    F --> H[Human approval]
+    H --> I[Codex makes the smallest approved change]
 
-    subgraph graph[2 · Map the real change]
-        direction LR
-        codegraph[Code Graph: symbols, callers, tests]
-        semantic[Semantic V1/V2 local analysis]
-        provider[Semantic V3 provider data<br/>only when explicitly approved]
-        codegraph --> semantic
-        semantic -. optional .-> provider
-    end
+    I --> J[Test Precision and focused validation]
+    I --> K[Optional quality CI Sonar and security signals]
+    J --> L[Requirement aware review and review lenses]
+    K --> L
 
-    graph --> controls
+    L --> M{Requirement met}
+    M -->|No| B
+    M -->|Yes| N[Evaluation Harness benchmarks and evidence labels]
 
-    subgraph controls[3 · Keep the work safe]
-        direction LR
-        policy[Project policy and governance]
-        guardrails[Guardrails and dependency gate]
-        approval[Human approval gate]
-        policy --> guardrails --> approval
-    end
+    N --> O[Approval-only learnings and handoff]
+    O --> P[Release hygiene Meta-Harness and controlled shared metadata]
 
-    approval --> change[4 · Codex makes the smallest approved change]
-    change --> validate
-
-    subgraph validate[5 · Validate and inspect]
-        direction LR
-        tests[Test Precision and focused tests]
-        quality[Quality, CI/Sonar, and security signals<br/>only when approved]
-        lenses[Review lenses: QA, security, architecture,<br/>maintainability, dependency]
-        tests --> lenses
-        quality --> lenses
-    end
-
-    lenses --> decision{Requirement met?}
-    decision -- no --> nav
-    decision -- yes --> evidence
-
-    subgraph evidence[6 · Preserve useful proof]
-        direction LR
-        review[Requirement-aware review]
-        eval[Evaluation Harness and benchmarks]
-        value[Evidence labels and value reports]
-        review --> eval --> value
-    end
-
-    evidence --> memory
-
-    subgraph memory[7 · Reuse and hand off]
-        direction LR
-        learn[Approval-only learnings]
-        handoff[Handoff and release hygiene]
-        meta[Meta-Harness and shared metadata<br/>with explicit controls]
-        learn --> handoff --> meta
-    end
-
-    adapters[Codex plugin, MCP, and assistant adapters] -. integrates with .-> intake
+    Q[Codex plugin MCP and assistant adapters] -.-> B
 ```
 
-| Stage | TailTrail feature families | What stays under human control |
+| Stage | TailTrail feature families | Human control |
 | --- | --- | --- |
-| **Understand** | Navigator, intent expansion, Bootstrap Snapshot, token routing | Task scope and the plan. |
-| **Map** | Code Graph, local semantic analysis, optional provider ingestion | Any provider-backed analysis requires explicit approval. |
-| **Control** | Policy, governance, guardrails, Dependency Gate | Editing code, installing dependencies, and risky actions. |
-| **Validate** | Test Precision, quality/CI/Sonar, security signals, review lenses | Which checks actually run. |
-| **Prove** | Review, Evaluation Harness, benchmarks, evidence labels, value reports | What claims are made and what evidence is recorded. |
-| **Improve** | Approval-only learnings, handoff, release hygiene, Meta-Harness | Capturing, sharing, or applying durable knowledge. |
+| Understand | Navigator, intent expansion, Bootstrap Snapshot, token routing | Defines the task and approves the plan. |
+| Map | Code Graph, local semantic analysis, optional provider ingestion | Provider-backed analysis is explicit. |
+| Control | Project policy, governance, guardrails, Dependency Gate | Controls editing, dependencies, and risky actions. |
+| Validate | Test Precision, quality, CI/Sonar, security signals, review lenses | Selects which checks run. |
+| Prove | Review, Evaluation Harness, benchmarks, evidence labels, value reports | Decides what evidence and claims are recorded. |
+| Improve | Learnings, handoff, release hygiene, Meta-Harness | Controls capture, reuse, and sharing. |
 
 ### What TailTrail is
 
@@ -150,7 +109,7 @@ positive.
 | Evaluation Harness report | Saved artifacts make the submission replayable. |
 
 > **Demo boundary:** the initial failing test is intentional. It is the bug fixed
-> during the live recording—not a broken setup.
+> during the live recording, not a broken setup.
 
 ## Judge quickstart
 
@@ -160,7 +119,7 @@ no API key, package install, network access, database, or external scanner.
 From the repository root:
 
 ```bash
-# 1. Show the approval-first plan — no edits are made.
+# 1. Show the approval-first plan. No edits are made.
 python3 tailtrail/scripts/tailtrail.py start "fix the claim amount validation bug and add focused validation" --root buildweek-demo-project --changed src/claims_api/validation.py
 
 # 2. Map the exact implementation and test scope.
@@ -185,8 +144,7 @@ Before the live fix, `test_rejects_zero_amount` fails by design. After updating
 ## Use it with Codex
 
 This repository includes a Codex plugin manifest plus bundled `@tailtrail` and
-`@tailtrail-review` skills. Open this repository in Codex and start the demo
-with the following prompt:
+`@tailtrail-review` skills. Open this repository in Codex and use this prompt:
 
 ```text
 Run TailTrail Navigator first for this task: fix the claim amount validation bug
@@ -199,11 +157,11 @@ src/claims_api/validation.py. Show the plan only. Do not implement until I appro
 | Capability | Meaningful role in the demo |
 | --- | --- |
 | **Codex** | Inspects the code and tests, follows the Navigator plan, implements the approved minimal fix, and runs focused validation. |
-| **GPT-5.6** | Powers the live reasoning conversation: translating the request into a scoped plan, explaining impact, and reviewing requirement fulfillment. |
+| **GPT-5.6** | Powers the live reasoning conversation: turns the request into a scoped plan, explains impact, and reviews requirement fulfillment. |
 | **TailTrail** | Supplies local workflow structure, guardrails, code mapping, evidence labels, and deterministic evaluation artifacts. |
 
 TailTrail does not replace Codex, human judgment, tests, CI, security review, or
-scanners. Token figures are estimates unless measured provider telemetry exists.
+scanners. Token savings are estimates unless measured provider telemetry exists.
 
 ## Repository map
 
