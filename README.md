@@ -4,6 +4,8 @@
 
 <h1 align="center">TailTrail</h1>
 
+<p align="center">Created by <strong>Vishrut Singhal</strong></p>
+
 <p align="center">
   <strong>Keep AI-assisted code changes focused, reviewable, and provable.</strong><br />
   OpenAI Build Week 2026 Developer Tools submission
