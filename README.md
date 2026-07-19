@@ -36,7 +36,7 @@ flowchart LR
     F --> G[Review + saved evidence]
 ```
 
-### What the Navigator prints
+### What TailTrail is
 
 ```text
 +--------------------------------------------+
