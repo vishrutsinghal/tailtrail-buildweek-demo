@@ -15,6 +15,26 @@
 
 ---
 
+### What TailTrail is
+
+TailTrail is a small local development helper for making cleaner, smaller, reuse-first code changes.
+
+TailTrail's default workflow is simple: start with one command, review the plan, then approve or edit the next step. The goal is to help an agent read the existing code before changing it, reuse project patterns, avoid unnecessary dependencies, keep diffs easy to review, and preserve important safeguards.
+
+```text
++--------------------------------------------+
+| TailTrail                                  |
+| Navigator online. Context stays lean.      |
+|                                            |
+| Navigator * Code Graph * Guardrails        |
+| AIDLC * Review Lenses * Test Precision     |
+| Token Budget * CI/Sonar * Security         |
+| Learning * Handoff * Value Reports         |
+| Meta-Harness * Shared Metadata             |
++--------------------------------------------+
+```
+
+
 ## The problem
 
 Small coding tasks should stay small. But AI-assisted changes can drift into
@@ -79,20 +99,6 @@ flowchart TB
 | Prove | Review, Evaluation Harness, benchmarks, evidence labels, value reports | Decides what evidence and claims are recorded. |
 | Improve | Learnings, handoff, release hygiene, Meta-Harness | Controls capture, reuse, and sharing. |
 
-### What TailTrail is
-
-```text
-+--------------------------------------------+
-| TailTrail                                  |
-| Navigator online. Context stays lean.      |
-|                                            |
-| Navigator * Code Graph * Guardrails        |
-| AIDLC * Review Lenses * Test Precision     |
-| Token Budget * CI/Sonar * Security         |
-| Learning * Handoff * Value Reports         |
-| Meta-Harness * Shared Metadata             |
-+--------------------------------------------+
-```
 
 ## See it in two minutes
 
