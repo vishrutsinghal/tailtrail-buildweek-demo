@@ -36,6 +36,90 @@ flowchart LR
     F --> G[Review + saved evidence]
 ```
 
+## End-to-end workflow
+
+The demo uses the core path. The surrounding capabilities are available when a
+task needs them; TailTrail does not silently run tools, modify code, or share
+data.
+
+```mermaid
+flowchart TB
+    task[Developer request] --> intake
+
+    subgraph intake[1 · Understand and scope]
+        direction LR
+        intent[Intent expansion] --> nav[Navigator-first plan]
+        snapshot[Bootstrap Snapshot] --> nav
+        token[Token routing and context slicing] --> nav
+    end
+
+    nav --> graph
+
+    subgraph graph[2 · Map the real change]
+        direction LR
+        codegraph[Code Graph: symbols, callers, tests]
+        semantic[Semantic V1/V2 local analysis]
+        provider[Semantic V3 provider data<br/>only when explicitly approved]
+        codegraph --> semantic
+        semantic -. optional .-> provider
+    end
+
+    graph --> controls
+
+    subgraph controls[3 · Keep the work safe]
+        direction LR
+        policy[Project policy and governance]
+        guardrails[Guardrails and dependency gate]
+        approval[Human approval gate]
+        policy --> guardrails --> approval
+    end
+
+    approval --> change[4 · Codex makes the smallest approved change]
+    change --> validate
+
+    subgraph validate[5 · Validate and inspect]
+        direction LR
+        tests[Test Precision and focused tests]
+        quality[Quality, CI/Sonar, and security signals<br/>only when approved]
+        lenses[Review lenses: QA, security, architecture,<br/>maintainability, dependency]
+        tests --> lenses
+        quality --> lenses
+    end
+
+    lenses --> decision{Requirement met?}
+    decision -- no --> nav
+    decision -- yes --> evidence
+
+    subgraph evidence[6 · Preserve useful proof]
+        direction LR
+        review[Requirement-aware review]
+        eval[Evaluation Harness and benchmarks]
+        value[Evidence labels and value reports]
+        review --> eval --> value
+    end
+
+    evidence --> memory
+
+    subgraph memory[7 · Reuse and hand off]
+        direction LR
+        learn[Approval-only learnings]
+        handoff[Handoff and release hygiene]
+        meta[Meta-Harness and shared metadata<br/>with explicit controls]
+        learn --> handoff --> meta
+    end
+
+    adapters[Codex plugin, MCP, and assistant adapters] -. integrates with .-> intake
+```
+
+| Stage | TailTrail feature families | What stays under human control |
+| --- | --- | --- |
+| **Understand** | Navigator, intent expansion, Bootstrap Snapshot, token routing | Task scope and the plan. |
+| **Map** | Code Graph, local semantic analysis, optional provider ingestion | Any provider-backed analysis requires explicit approval. |
+| **Control** | Policy, governance, guardrails, Dependency Gate | Editing code, installing dependencies, and risky actions. |
+| **Validate** | Test Precision, quality/CI/Sonar, security signals, review lenses | Which checks actually run. |
+| **Prove** | Review, Evaluation Harness, benchmarks, evidence labels, value reports | What claims are made and what evidence is recorded. |
+| **Improve** | Approval-only learnings, handoff, release hygiene, Meta-Harness | Capturing, sharing, or applying durable knowledge. |
+
 ### What TailTrail is
 
 ```text
@@ -137,7 +221,6 @@ scanners. Token figures are estimates unless measured provider telemetry exists.
 - [Recording runbook](buildweek-demo-project/DEMO-RUNBOOK.md)
 - [Copy-paste demo prompts](buildweek-demo-project/DEMO-PROMPTS.md)
 - [Video script](PITCH-SCRIPT.md)
-- [Video production guide and OpenMontage prompt](VIDEO-PRODUCTION-GUIDE.md)
 - [One-page overview](PITCH-ONE-PAGER.md)
 
 ## License
