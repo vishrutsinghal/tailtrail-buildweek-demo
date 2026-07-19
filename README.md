@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <code>Navigator-first</code> | <code>Local-first</code> | <code>Approval-first</code> | <code>No demo dependencies</code>
+  <code>Navigator-first</code> | <code>Local-first</code> | <code>Approval-first</code> | <code>Harness validation</code>
 </p>
 
 ---
