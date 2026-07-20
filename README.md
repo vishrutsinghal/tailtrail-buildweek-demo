@@ -173,12 +173,14 @@ This is **not needed for the self-contained Build Week demo repository**. Use
 it when you want to add TailTrail's Codex guidance and skills to a separate
 local project.
 
-From this repository root, preview the install first.
+From the **submission repository root** (`tailtrail-buildweek-demo`), preview
+the install first. Forward slashes also work in Windows PowerShell and Codex
+terminals.
 
 **Windows PowerShell:**
 
 ```powershell
-python tailtrail\scripts\tailtrail.py install codex-plugin --target "D:\Projects\my-project" --dry-run
+python tailtrail/scripts/tailtrail.py install codex-plugin --target "D:\Projects\my-project" --dry-run
 ```
 
 **macOS or Linux:**
@@ -192,7 +194,7 @@ After reviewing the plan, run the same command without `--dry-run`.
 **Windows PowerShell:**
 
 ```powershell
-python tailtrail\scripts\tailtrail.py install codex-plugin --target "D:\Projects\my-project"
+python tailtrail/scripts/tailtrail.py install codex-plugin --target "D:\Projects\my-project"
 ```
 
 **macOS or Linux:**
