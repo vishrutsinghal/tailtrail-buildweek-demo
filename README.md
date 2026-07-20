@@ -151,8 +151,31 @@ Before the live fix, `test_rejects_zero_amount` fails by design. After updating
 
 ## Use it with Codex
 
-This repository includes a Codex plugin manifest plus bundled `@tailtrail` and
-`@tailtrail-review` skills. Open this repository in Codex and use this prompt:
+### Codex setup
+
+TailTrail is already bundled in this repository. For the Build Week demo, there
+is **no separate package install, API key, global configuration, or dependency
+download**.
+
+1. Clone this repository and open its root folder in Codex.
+2. Keep the root [`AGENTS.md`](AGENTS.md) in place. It gives Codex the durable
+   TailTrail workflow and points it to the demo policy.
+3. The included [plugin manifest](.codex-plugin/plugin.json) exposes the
+   bundled TailTrail skills in [`tailtrail/skills/`](tailtrail/skills/):
+   `@tailtrail` for guided implementation and `@tailtrail-review` for review.
+4. Start a **new Codex task** in this repository and use the prompt below.
+5. Verify the local setup by running the Navigator command in the Judge
+   quickstart section. It prints a plan only and does not edit code.
+
+If your Codex workspace does not show local plugins or `@` mentions, the demo
+still works: `AGENTS.md` plus the TailTrail terminal commands provide the same
+local workflow. Plugin availability can depend on the Codex plan, workspace
+settings, role, and supported surface. See the official
+[Codex plugins guidance](https://help.openai.com/en/articles/20001256-plugins-in-codex).
+
+### Start the live demo
+
+With Codex open at the repository root, use this prompt:
 
 ```text
 Run TailTrail Navigator first for this task: fix the claim amount validation bug
