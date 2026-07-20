@@ -208,6 +208,23 @@ skill sources. It preserves existing guidance and plugin files by default; use
 `--force` only when you intentionally want TailTrail to replace those managed
 files.
 
+### Optional Windows `tailtrail` command
+
+Use this only if you want to run `tailtrail hello` from any PowerShell folder
+instead of calling the Python script directly. From the submission repository
+root, install the Windows command shims:
+
+```powershell
+$tailtrailBin = "$env:USERPROFILE\.tailtrail\bin"
+python tailtrail/scripts/tailtrail.py install launcher --bin-dir $tailtrailBin --force
+$env:Path += ";$tailtrailBin"
+tailtrail hello
+```
+
+This creates `tailtrail.cmd` and `hello.cmd`. The `PATH` line applies to the
+current PowerShell session; add the same folder to your User `PATH` in Windows
+Environment Variables if you want it available in future terminals.
+
 If your Codex workspace does not show local plugins or `@` mentions, the demo
 still works: `AGENTS.md` plus the TailTrail terminal commands provide the same
 local workflow. Plugin availability can depend on the Codex plan, workspace
