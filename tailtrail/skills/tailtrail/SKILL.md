@@ -7,6 +7,17 @@ description: Use for coding, bug fixing, refactoring, reviewing diffs, choosing 
 
 Use TailTrail to keep local development changes small, clear, and grounded in the codebase.
 
+## Windows command rule
+
+In the Build Week package on Windows, invoke TailTrail with:
+
+```powershell
+py -3 tailtrail/scripts/tailtrail.py <command>
+```
+
+Never use a bare `python` command. It can resolve to the Microsoft Store
+app-execution alias instead of an installed Python runtime.
+
 ## Modes
 
 Use `steady` unless the user asks for another mode.
