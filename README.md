@@ -173,16 +173,32 @@ This is **not needed for the self-contained Build Week demo repository**. Use
 it when you want to add TailTrail's Codex guidance and skills to a separate
 local project.
 
-From this repository root, preview the install first:
+From this repository root, preview the install first.
 
-```bash
-python3 tailtrail/scripts/tailtrail.py install codex-plugin --target /absolute/path/to/your-project --dry-run
+**Windows PowerShell:**
+
+```powershell
+python tailtrail\scripts\tailtrail.py install codex-plugin --target "D:\Projects\my-project" --dry-run
 ```
 
-After reviewing the plan, run the same command without `--dry-run`:
+**macOS or Linux:**
 
 ```bash
-python3 tailtrail/scripts/tailtrail.py install codex-plugin --target /absolute/path/to/your-project
+python3 tailtrail/scripts/tailtrail.py install codex-plugin --target /path/to/your-project --dry-run
+```
+
+After reviewing the plan, run the same command without `--dry-run`.
+
+**Windows PowerShell:**
+
+```powershell
+python tailtrail\scripts\tailtrail.py install codex-plugin --target "D:\Projects\my-project"
+```
+
+**macOS or Linux:**
+
+```bash
+python3 tailtrail/scripts/tailtrail.py install codex-plugin --target /path/to/your-project
 ```
 
 The installer adds `AGENTS.md`, `.codex-plugin/plugin.json`, and the TailTrail
