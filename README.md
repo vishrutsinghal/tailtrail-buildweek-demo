@@ -167,6 +167,29 @@ download**.
 5. Verify the local setup by running the Navigator command in the Judge
    quickstart section. It prints a plan only and does not edit code.
 
+### Optional Python installer for another Codex project
+
+This is **not needed for the self-contained Build Week demo repository**. Use
+it when you want to add TailTrail's Codex guidance and skills to a separate
+local project.
+
+From this repository root, preview the install first:
+
+```bash
+python3 tailtrail/scripts/tailtrail.py install codex-plugin --target /absolute/path/to/your-project --dry-run
+```
+
+After reviewing the plan, run the same command without `--dry-run`:
+
+```bash
+python3 tailtrail/scripts/tailtrail.py install codex-plugin --target /absolute/path/to/your-project
+```
+
+The installer adds `AGENTS.md`, `.codex-plugin/plugin.json`, and the TailTrail
+skill sources. It preserves existing guidance and plugin files by default; use
+`--force` only when you intentionally want TailTrail to replace those managed
+files.
+
 If your Codex workspace does not show local plugins or `@` mentions, the demo
 still works: `AGENTS.md` plus the TailTrail terminal commands provide the same
 local workflow. Plugin availability can depend on the Codex plan, workspace
