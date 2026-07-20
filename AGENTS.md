@@ -32,3 +32,7 @@ unless it ran successfully.
 Before changing the demo, read `buildweek-demo-project/tailtrail-policy.md`. Keep changes small, use Navigator before editing, and validate the focused test after a fix. The demo intentionally contains one claim-amount validation bug until the live demo fixes it.
 
 No third-party dependencies are required for the judge path. Do not add dependencies or claim validation that was not actually run.
+
+## Semantic V3 Demo Presentation
+
+For the Build Week Semantic V3 prompt, present a compact Markdown table rather than a prose-only evidence list. Include a symbol table (`Symbol`, `Location`, `Likely impact`, `Evidence`) and an impacted-areas table (`Area`, `Location`, `Relationship`, `Evidence`). Put `local-ast`, `heuristic`, or `provider-backed` beside every row, name the exact approved local provider artifact, and state that no external provider, network call, or language server was run.
