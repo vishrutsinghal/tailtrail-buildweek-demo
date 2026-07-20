@@ -137,7 +137,8 @@ python3 tailtrail/scripts/tailtrail.py graph ast --root buildweek-demo-project -
 python3 tailtrail/scripts/tailtrail.py eval scenario report --scenario buildweek-validation
 ```
 
-On Windows, use `python` instead of `python3` if needed.
+On Windows, use `py -3` instead of `python3` if needed. Avoid the Microsoft
+Store `python` app-execution alias.
 
 ### Run the demo test
 

@@ -13,18 +13,19 @@ This is the standalone TailTrail Build Week submission.
 Run TailTrail commands from this repository's root with:
 
 ```powershell
-python3 tailtrail/scripts/tailtrail.py <command> --root buildweek-demo-project
+py -3 tailtrail/scripts/tailtrail.py <command> --root buildweek-demo-project
 ```
 
-On Windows, use `python` if `python3` is not registered.
+On Windows, prefer `py -3`. If the Python Launcher is unavailable, use
+`python3`; do not fall back to the Microsoft Store `python` app-execution alias.
 
 When a user says `tailtrail hello`, `hello tailtrail`, or the `taitrail` typo,
-run `python tailtrail/scripts/tailtrail.py hello` from this repository root.
+run `py -3 tailtrail/scripts/tailtrail.py hello` from this repository root.
 Return the command's ASCII TailTrail banner and installation result verbatim;
 do not reduce it to an "installation passed" summary.
 
 For any explicit `tailtrail <command>` request, run the equivalent command with
-`python tailtrail/scripts/tailtrail.py <command>` and return the actual command
+`py -3 tailtrail/scripts/tailtrail.py <command>` and return the actual command
 result, including errors and validation status. Do not claim a command succeeded
 unless it ran successfully.
 
