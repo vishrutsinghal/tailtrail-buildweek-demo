@@ -8,6 +8,7 @@ import importlib.util
 import json
 import re
 import subprocess
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -19,7 +20,9 @@ import token_budget_coach
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PYTHON = "python3"
+# Reuse the interpreter that launched TailTrail. This keeps nested helper calls
+# working for Windows `py -3` installs as well as Unix `python3` installs.
+PYTHON = sys.executable
 
 
 def load_registry_module() -> Any | None:
