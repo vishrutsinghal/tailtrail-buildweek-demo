@@ -18,6 +18,16 @@ python3 tailtrail/scripts/tailtrail.py <command> --root buildweek-demo-project
 
 On Windows, use `python` if `python3` is not registered.
 
+When a user says `tailtrail hello`, `hello tailtrail`, or the `taitrail` typo,
+run `python tailtrail/scripts/tailtrail.py hello` from this repository root.
+Return the command's ASCII TailTrail banner and installation result verbatim;
+do not reduce it to an "installation passed" summary.
+
+For any explicit `tailtrail <command>` request, run the equivalent command with
+`python tailtrail/scripts/tailtrail.py <command>` and return the actual command
+result, including errors and validation status. Do not claim a command succeeded
+unless it ran successfully.
+
 Before changing the demo, read `buildweek-demo-project/tailtrail-policy.md`. Keep changes small, use Navigator before editing, and validate the focused test after a fix. The demo intentionally contains one claim-amount validation bug until the live demo fixes it.
 
 No third-party dependencies are required for the judge path. Do not add dependencies or claim validation that was not actually run.
